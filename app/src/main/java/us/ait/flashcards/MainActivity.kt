@@ -3,6 +3,7 @@ package us.ait.flashcards
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import us.ait.flashcards.adapter.GroupAdapter
@@ -47,13 +48,16 @@ class MainActivity : AppCompatActivity(), GroupDialog.GroupHandler {
                 recyclerTodo.adapter = groupAdapter
 
                 var itemDecorator = DividerItemDecoration(
-                    this,
-                    DividerItemDecoration.VERTICAL
+                this,
+                DividerItemDecoration.VERTICAL
                 )
+
+
                 recyclerTodo.addItemDecoration(itemDecorator)
 
-                //        recyclerTodo.layoutManager = GridLayoutManager(this,
-                //            2)
+
+                        recyclerTodo.layoutManager = GridLayoutManager(this,
+                            2)
 
 //                val callback = TodoReyclerTouchCallback(todoAdapter)
 //                val touchHelper = ItemTouchHelper(callback)

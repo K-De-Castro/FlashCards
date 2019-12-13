@@ -50,7 +50,7 @@ class GroupAdapter : RecyclerView.Adapter<GroupAdapter.ViewHolder>{
             // go to study activity
         }
 
-        holder.btnCards.setOnClickListener {
+        holder.itemView.setOnClickListener {
             var intentDetails = Intent()
 
             intentDetails.setClass(

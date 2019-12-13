@@ -72,7 +72,7 @@ class CardDialog : DialogFragment() {
 
         val positiveButton = (dialog as AlertDialog).getButton(Dialog.BUTTON_POSITIVE)
         positiveButton.setOnClickListener {
-            if (etCardQuest.text.isNotEmpty()) {
+            if (etCardQuest.text.isNotEmpty() && etCardAns.text.isNotEmpty()) {
                 if(isEditMode){
 //                    handleTodoEdit()
                 }else{
@@ -80,7 +80,10 @@ class CardDialog : DialogFragment() {
                 }
                 dialog.dismiss()
             } else {
-                etCardQuest.error = "This field can not be empty"
+
+                etCardQuest.error = "This field cannot be empty"
+                etCardAns.error = "This field cannot be empty"
+
             }
         }
     }

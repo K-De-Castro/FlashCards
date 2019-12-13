@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.card_row.view.*
+import us.ait.flashcards.CardsActivity
 import us.ait.flashcards.R
 import us.ait.flashcards.data.AppDatabase
 import us.ait.flashcards.data.Card
@@ -36,8 +37,30 @@ class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>{
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var card = cardList.get(holder.adapterPosition)
 
-        holder.tvAns.text = card.cardAns
+
+
         holder.tvQuest.text = card.cardQuest
+
+        holder.tvAns.text = card.cardAns
+
+        holder.btnShowAnswer.setOnClickListener {
+
+            if(!(holder.tvAns.VISIBLE())) {
+                holder.tvAns.setVisible(true)
+            }
+
+            else if(holder.tvAns.VISIBLE()){
+                holder.tvAns.setVisible(false)
+            }
+        }
+
+        holder.btnDelete.setOnClickListener{
+            deleteCard(holder.adapterPosition)
+        }
+
+        holder.btnEdit.setOnClickListener {
+            // edit
+        }
 
     }
 
@@ -53,16 +76,16 @@ class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>{
         notifyItemChanged(index)
     }
 
-    fun deleteTodo(index: Int){
-//        Thread{
-//            AppDatabase.getInstance(context).todoDao().deleteTodo(todoList[index])
-//
-//            (context as ScrollingActivity).runOnUiThread {
-//                todoList.removeAt(index)
-//                notifyItemRemoved(index)
-//
-//            }
-//        }.start()
+    fun deleteCard(index: Int){
+        Thread{
+            AppDatabase.getInstance(context).groupDao().deleteCard(cardList[index])
+
+            (context as CardsActivity).runOnUiThread {
+                cardList.removeAt(index)
+                notifyItemRemoved(index)
+
+            }
+        }.start()
 
     }
 
@@ -92,9 +115,25 @@ class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>{
 //        notifyItemMoved(fromPosition, toPosition)
 //    }
 
+
+    private fun View.VISIBLE(): Boolean{
+        return visibility == View.VISIBLE
+    }
+
+    fun View.setVisible(visible: Boolean) {
+        visibility = if (visible) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var tvQuest = itemView.tvQuestion
         var tvAns= itemView.tvAnswer
+        var btnDelete = itemView.btnDeleteCardRow
+        var btnEdit = itemView.btnEditCardRow
+        var btnShowAnswer = itemView.btnShowAnswer
 
     }
 }

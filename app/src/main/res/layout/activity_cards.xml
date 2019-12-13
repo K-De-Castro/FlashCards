@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EBF5FB"
     android:fitsSystemWindows="true"
     tools:context=".CardsActivity">
 
@@ -27,8 +28,9 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-
+        android:tint="@android:color/white"
+        app:backgroundTint="#2E86C1"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -36,13 +38,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="66dp" />
+        app:layout_constraintGuide_begin="621dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="360dp" />
+        app:layout_constraintGuide_begin="354dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
