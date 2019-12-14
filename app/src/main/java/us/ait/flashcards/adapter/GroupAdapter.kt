@@ -48,9 +48,6 @@ class GroupAdapter : RecyclerView.Adapter<GroupAdapter.ViewHolder>{
             deleteGroup(holder.adapterPosition)
         }
 
-        holder.btnStudy.setOnClickListener {
-            // go to study activity
-        }
 
         holder.itemView.setOnClickListener {
             var intentDetails = Intent()
