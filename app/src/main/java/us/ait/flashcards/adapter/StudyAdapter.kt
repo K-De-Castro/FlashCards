@@ -121,6 +121,8 @@ class StudyAdapter : RecyclerView.Adapter<StudyAdapter.ViewHolder>{
         return visibility == View.VISIBLE
     }
 
+
+
     fun View.setVisible(visible: Boolean) {
         visibility = if (visible) {
             View.VISIBLE
