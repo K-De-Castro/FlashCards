@@ -3,8 +3,7 @@ package us.ait.flashcards
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,6 +47,10 @@ class StudyActivity : AppCompatActivity() {
 
             buttonPrevious(cards)
 
+            btnAnswer.setOnClickListener {
+                tvAnsw.setVisibility(VISIBLE)
+            }
+
 
             this@StudyActivity.runOnUiThread(java.lang.Runnable {
             })
@@ -64,9 +67,11 @@ class StudyActivity : AppCompatActivity() {
 
                 currentCard -= 1
 
-                tvAnsw.text = cards.get(currentCard).cardQuest
+                tvAnsw.text = cards.get(currentCard).cardAns
 
-                tvQuest.text = cards.get(currentCard).cardAns
+                tvQuest.text = cards.get(currentCard).cardQuest
+
+                tvAnsw.setVisibility(INVISIBLE)
             }
         }
     }
@@ -79,9 +84,11 @@ class StudyActivity : AppCompatActivity() {
 
                 currentCard += 1
 
-                tvAnsw.text = cards.get(currentCard).cardQuest
+                tvAnsw.text = cards.get(currentCard).cardAns
 
-                tvQuest.text = cards.get(currentCard).cardAns
+                tvQuest.text = cards.get(currentCard).cardQuest
+
+                tvAnsw.setVisibility(INVISIBLE)
 
             }
 
@@ -91,15 +98,16 @@ class StudyActivity : AppCompatActivity() {
     private fun buttonStart(cards: List<Card>) {
         btnStart.setOnClickListener {
 
-            tvAnsw.text = cards.get(currentCard + 1).cardQuest
+            tvAnsw.text = cards.get(currentCard + 1).cardAns
 
-            tvQuest.text = cards.get(currentCard + 1).cardAns
+            tvQuest.text = cards.get(currentCard + 1).cardQuest
 
             currentCard += 1
 
             btnStart.setVisibility(GONE)
             btnPrevious.setVisibility(VISIBLE)
             btnNext.setVisibility(VISIBLE)
+            btnAnswer.setVisibility(VISIBLE)
         }
     }
 
