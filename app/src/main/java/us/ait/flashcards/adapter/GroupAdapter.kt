@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.group_row.*
 import kotlinx.android.synthetic.main.group_row.view.*
 import us.ait.flashcards.CardsActivity
 import us.ait.flashcards.MainActivity
 import us.ait.flashcards.R
+import us.ait.flashcards.StudyActivity
 import us.ait.flashcards.data.AppDatabase
 import us.ait.flashcards.data.Group
 import java.util.*
@@ -68,6 +70,20 @@ class GroupAdapter : RecyclerView.Adapter<GroupAdapter.ViewHolder>{
 //            (context as MainActivity).showEditGroupDialog(
 //                group, holder.adapterPosition
 //            )
+        }
+
+        holder.btnStudy.setOnClickListener {
+
+            var intentDetails = Intent()
+
+            intentDetails.setClass(
+                context,
+                StudyActivity::class.java
+            )
+
+            intentDetails.putExtra("KEY_DETAILS", group.groupId)
+
+            context.startActivity(intentDetails)
         }
 
     }

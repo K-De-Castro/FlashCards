@@ -1,11 +1,13 @@
 package us.ait.flashcards
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.group_row.*
 import us.ait.flashcards.adapter.GroupAdapter
 import us.ait.flashcards.data.AppDatabase
 import us.ait.flashcards.data.Group
@@ -35,6 +37,8 @@ class MainActivity : AppCompatActivity(), GroupDialog.GroupHandler {
         fabDeleteAll.setOnClickListener {
             groupAdapter.deleteAllGroups()
         }
+
+
 
 
     }
