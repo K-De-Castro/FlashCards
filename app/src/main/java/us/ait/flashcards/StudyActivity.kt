@@ -11,7 +11,7 @@ import us.ait.flashcards.data.AppDatabase
 import us.ait.flashcards.data.Card
 import us.ait.flashcards.data.Group
 
-class StudyActivity : AppCompatActivity(), CardDialog.CardHandler {
+class StudyActivity : AppCompatActivity() {
 
     companion object {
         const val KEY_TODO = "KEY_TODO"
@@ -77,9 +77,7 @@ class StudyActivity : AppCompatActivity(), CardDialog.CardHandler {
         }.start()
     }
 
-    override fun cardCreated(item: Card) {
-        saveCard(item)
-    }
+
 //    var editIndex: Int = -1
 
 //    override fun groupUpdated(item: Group) {

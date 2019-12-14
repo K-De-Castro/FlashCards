@@ -29,6 +29,9 @@ interface GroupDao {
     @Delete
     fun deleteCard(card: Card)
 
+    @Update
+    fun updateCard(card: Card)
+
     @Query("DELETE FROM `Card` WHERE parentGroupId = :groupId")
     fun deleteCardsForGroup(groupId: Long)
 

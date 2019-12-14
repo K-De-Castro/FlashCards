@@ -17,9 +17,9 @@ class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>{
     var cardList = mutableListOf<Card>()
     var context : Context
 
-    constructor(context: Context, todos: List<Card>){
+    constructor(context: Context, cards: List<Card>){
         this.context = context
-        cardList.addAll(todos)
+        cardList.addAll(cards)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -59,19 +59,20 @@ class CardAdapter : RecyclerView.Adapter<CardAdapter.ViewHolder>{
         }
 
         holder.btnEdit.setOnClickListener {
-            // edit
+            (context as CardsActivity).showEditCardDialog(
+                card, holder.adapterPosition
+            )
         }
 
     }
 
-    fun updateTodo(card: Card){
-        //TODO figure this out
-//        Thread{
-//            AppDatabase.getInstance(context).Dao().updateTodo(todo)
-//        }.start()
+    fun updateCard(card: Card){
+        Thread{
+            AppDatabase.getInstance(context).groupDao().updateCard(card)
+        }.start()
     }
 
-    fun updateTodoOnPosition(card: Card, index: Int){
+    fun updateCardOnPosition(card: Card, index: Int){
         cardList.set(index, card)
         notifyItemChanged(index)
     }

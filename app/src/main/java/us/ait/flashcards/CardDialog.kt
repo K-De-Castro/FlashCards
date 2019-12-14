@@ -14,7 +14,7 @@ class CardDialog : DialogFragment() {
 
     interface CardHandler {
         fun cardCreated(item: Card)
-//        fun todoUpdated(item: Card)
+        fun cardUpdated(item: Card)
     }
 
     private var groupId :Long = 0
@@ -51,14 +51,14 @@ class CardDialog : DialogFragment() {
         etCardQuest = rootView.etQuestion
         builder.setView(rootView)
 
-//        isEditMode = ((arguments != null) && arguments!!.containsKey(CardsActivity.KEY_TODO))
+        isEditMode = ((arguments != null) && arguments!!.containsKey(CardsActivity.KEY_TODO))
 
-//        if (isEditMode) {
-//            var card: Todo = (arguments?.getSerializable(ScrollingActivity.KEY_TODO) as Todo)
-//
-//            etTodoDate.setText(todo.createDate)
-//            etTodoText.setText(todo.todoText)
-//        }
+        if (isEditMode) {
+            var card: Card = (arguments?.getSerializable(CardsActivity.KEY_TODO) as Card)
+            builder.setTitle("Edit FlashCard")
+            etCardQuest.setText(card.cardQuest)
+            etCardAns.setText(card.cardAns)
+        }
 
         builder.setPositiveButton("OK") {
                 dialog, witch -> // empty
@@ -74,7 +74,7 @@ class CardDialog : DialogFragment() {
         positiveButton.setOnClickListener {
             if (etCardQuest.text.isNotEmpty() && etCardAns.text.isNotEmpty()) {
                 if(isEditMode){
-//                    handleTodoEdit()
+                    handleCardEdit()
                 }else{
                     handleCardCreate()
                 }
@@ -99,13 +99,13 @@ class CardDialog : DialogFragment() {
         )
     }
 
-//    private fun handleTodoEdit() {
-//        val todoToEdit = arguments?.getSerializable(
-//            CardsActivity.KEY_TODO
-//        ) as Todo
-//        todoToEdit.createDate = etTodoDate.text.toString()
-//        todoToEdit.todoText = etTodoText.text.toString()
-//
-//        todoHandler.todoUpdated(todoToEdit)
-//    }
+    private fun handleCardEdit() {
+        val cardToEdit = arguments?.getSerializable(
+            CardsActivity.KEY_TODO
+        ) as Card
+        cardToEdit.cardQuest = etCardQuest.text.toString()
+        cardToEdit.cardAns = etCardAns.text.toString()
+
+        cardHandler.cardUpdated(cardToEdit)
+    }
 }

@@ -67,9 +67,9 @@ class GroupAdapter : RecyclerView.Adapter<GroupAdapter.ViewHolder>{
         }
 
         holder.btnEdit.setOnClickListener {
-//            (context as MainActivity).showEditGroupDialog(
-//                group, holder.adapterPosition
-//            )
+            (context as MainActivity).showEditGroupDialog(
+                group, holder.adapterPosition
+            )
         }
 
         holder.btnStudy.setOnClickListener {

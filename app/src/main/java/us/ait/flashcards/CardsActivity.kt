@@ -66,6 +66,18 @@ class CardsActivity : AppCompatActivity(), CardDialog.CardHandler {
         dialog.show(supportFragmentManager, "TAG_TODO_DIALOG")
     }
 
+    fun showEditCardDialog(cardToEdit: Card, idx: Int){
+        editIndex = idx
+
+        val editDialog = CardDialog()
+
+        val bundle = Bundle()
+        bundle.putSerializable(MainActivity.KEY_TODO, cardToEdit)
+        editDialog.arguments = bundle
+
+        editDialog.show(supportFragmentManager, "TAG_TODO_EDIT")
+    }
+
     fun saveCard(card: Card){
         Thread{
             var newID =
@@ -82,16 +94,16 @@ class CardsActivity : AppCompatActivity(), CardDialog.CardHandler {
     override fun cardCreated(item: Card) {
         saveCard(item)
     }
-//    var editIndex: Int = -1
+    var editIndex: Int = -1
 
-//    override fun groupUpdated(item: Group) {
-//        Thread{
-//            AppDatabase.getInstance(
-//                this@MainActivity).groupDao().updateGroup(item)
-//
-//            runOnUiThread {
-//                groupAdapter.updateGroupOnPosition(item, editIndex)
-//            }
-//        }.start()
-//    }
+    override fun cardUpdated(item: Card) {
+        Thread{
+            AppDatabase.getInstance(
+                this@CardsActivity).groupDao().updateCard(item)
+
+            runOnUiThread {
+                cardAdapter.updateCardOnPosition(item, editIndex)
+            }
+        }.start()
+    }
 }

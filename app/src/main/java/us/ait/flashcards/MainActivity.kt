@@ -74,6 +74,18 @@ class MainActivity : AppCompatActivity(), GroupDialog.GroupHandler {
         GroupDialog().show(supportFragmentManager, "TAG_TODO_DIALOG")
     }
 
+    fun showEditGroupDialog(groupToEdit: Group, idx: Int){
+        editIndex = idx
+
+        val editDialog = GroupDialog()
+
+        val bundle = Bundle()
+        bundle.putSerializable(KEY_TODO, groupToEdit)
+        editDialog.arguments = bundle
+
+        editDialog.show(supportFragmentManager, "TAG_TODO_EDIT")
+    }
+
     fun saveGroup(group: Group){
         Thread{
             var newID =

@@ -56,9 +56,6 @@ class StudyAdapter : RecyclerView.Adapter<StudyAdapter.ViewHolder>{
         cardList.addAll(todos)
     }
 
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-//    }
 
     override fun getItemCount(): Int {
         return cardList.size

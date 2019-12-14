@@ -49,6 +49,7 @@ class GroupDialog : DialogFragment() {
 
         if (isEditMode) {
             var group: Group = (arguments?.getSerializable(MainActivity.KEY_TODO) as Group)
+            builder.setTitle("Edit Subject")
 
             etSubject.setText(group.groupTitle)
         }
