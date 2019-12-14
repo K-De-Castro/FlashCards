@@ -41,6 +41,8 @@ class StudyActivity : AppCompatActivity() {
 
             var cards = AppDatabase.getInstance(this@StudyActivity).groupDao().getCards(groupId)
 
+            if(cards.size>0){
+
             buttonStart(cards)
 
             buttonNext(cards)
@@ -49,6 +51,13 @@ class StudyActivity : AppCompatActivity() {
 
             btnAnswer.setOnClickListener {
                 tvAnsw.setVisibility(VISIBLE)
+            }
+
+            } else{
+                tvAnsw.text = ""
+                tvQuest.text = "Empty"
+                btnStart.setVisibility(GONE)
+
             }
 
 
